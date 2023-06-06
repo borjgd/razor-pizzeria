@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RazorPizzeria.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +22,19 @@ namespace RazorPizzeria.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FoodCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FoodSizes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Size = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodSizes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,8 +61,10 @@ namespace RazorPizzeria.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    price = table.Column<decimal>(type: "TEXT", nullable: false),
-                    FoodCategoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    IsGlutenFree = table.Column<bool>(type: "INTEGER", nullable: false),
+                    FoodCategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FoodSizeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,6 +73,12 @@ namespace RazorPizzeria.Migrations
                         name: "FK_FoodItems_FoodCategories_FoodCategoryId",
                         column: x => x.FoodCategoryId,
                         principalTable: "FoodCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FoodItems_FoodSizes_FoodSizeId",
+                        column: x => x.FoodSizeId,
+                        principalTable: "FoodSizes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -96,6 +117,11 @@ namespace RazorPizzeria.Migrations
                 column: "FoodCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FoodItems_FoodSizeId",
+                table: "FoodItems",
+                column: "FoodSizeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_FoodItemId",
                 table: "OrderDetails",
                 column: "FoodItemId");
@@ -120,6 +146,9 @@ namespace RazorPizzeria.Migrations
 
             migrationBuilder.DropTable(
                 name: "FoodCategories");
+
+            migrationBuilder.DropTable(
+                name: "FoodSizes");
         }
     }
 }

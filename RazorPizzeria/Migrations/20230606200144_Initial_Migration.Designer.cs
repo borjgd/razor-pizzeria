@@ -11,8 +11,8 @@ using RazorPizzeria.Data;
 namespace RazorPizzeria.Migrations
 {
     [DbContext(typeof(PizzeriaContext))]
-    [Migration("20230605222555_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230606200144_Initial_Migration")]
+    partial class Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,18 +44,41 @@ namespace RazorPizzeria.Migrations
                     b.Property<int>("FoodCategoryId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("FoodSizeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsGlutenFree")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FoodCategoryId");
 
+                    b.HasIndex("FoodSizeId");
+
                     b.ToTable("FoodItems");
+                });
+
+            modelBuilder.Entity("RazorPizzeria.Models.FoodSizes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FoodSizes");
                 });
 
             modelBuilder.Entity("RazorPizzeria.Models.Order", b =>
@@ -122,7 +145,15 @@ namespace RazorPizzeria.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("RazorPizzeria.Models.FoodSizes", "FoodSize")
+                        .WithMany()
+                        .HasForeignKey("FoodSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("FoodCategory");
+
+                    b.Navigation("FoodSize");
                 });
 
             modelBuilder.Entity("RazorPizzeria.Models.OrderDetails", b =>

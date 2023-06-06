@@ -9,6 +9,7 @@ namespace RazorPizzeria.Data
         public DbSet<FoodItems> FoodItems { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<FoodCategories> FoodCategories { get; set; }
+        public DbSet<FoodSizes> FoodSizes { get; set; }
         public PizzeriaContext(DbContextOptions<PizzeriaContext> options) : base(options)
         {
         }
