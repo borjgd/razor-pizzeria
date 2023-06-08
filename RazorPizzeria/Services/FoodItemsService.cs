@@ -1,5 +1,7 @@
-﻿using RazorPizzeria.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RazorPizzeria.Data;
 using RazorPizzeria.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RazorPizzeria.Services
 {
@@ -21,7 +23,14 @@ namespace RazorPizzeria.Services
         public List<FoodItems> GetAllFoodItemsByCategory(int foodCategory)
         {
             if (_PizzaContext.FoodItems != null)
-                return _PizzaContext.FoodItems.Where(x => x.FoodCategoryId == foodCategory).ToList();
+            {
+                return _PizzaContext.FoodItems
+                    .Include(fi => fi.FoodCategory)
+                    .Include(fi => fi.FoodSize)
+                    .Where(x => x.FoodCategoryId == foodCategory)
+                    .ToList();
+            }
+                
             return new List<FoodItems>();
         }
 
