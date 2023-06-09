@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPizzeria.Data;
-using RazorPizzeria.Models;
+using RazorPizzeria.DTOs;
 using RazorPizzeria.Services;
 
 namespace RazorPizzeria.Pages
@@ -9,7 +9,7 @@ namespace RazorPizzeria.Pages
     public class PizzasModel : PageModel
     {
         private readonly FoodItemsService _FoodItemsService;
-        public List<FoodItems> Pizzas { get; set; } = default!;
+        public List<FoodDTO> Pizzas { get; set; } = default!;
         public PizzasModel(FoodItemsService foodItemsService) 
         { 
             _FoodItemsService= foodItemsService;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RazorPizzeria.Data;
+using RazorPizzeria.DTOs;
 using RazorPizzeria.Models;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -13,31 +14,59 @@ namespace RazorPizzeria.Services
             _PizzaContext= pizzaContext;
         }
 
-        public List<FoodItems> GetAllFoodItems()
+        public List<FoodDTO> GetAllFoodItems()
         { 
             if (_PizzaContext.FoodItems != null)
-                return _PizzaContext.FoodItems.ToList();
-            return new List<FoodItems>();
+                return _PizzaContext.FoodItems
+                    .Include(fi => fi.FoodCategory)
+                    .Include(fi => fi.FoodSize)
+                    .Select(q => new FoodDTO()
+                    {
+                        Id = q.Id,
+                        Food = q.Name,
+                        IsGlutenFree = q.IsGlutenFree,
+                        Size = q.FoodSize.Size,
+                        Category = q.FoodCategory.CategoryName,
+                        Price = q.Price
+                    })
+                    .ToList();
+            return new List<FoodDTO>();
         }
 
-        public List<FoodItems> GetAllFoodItemsByCategory(int foodCategory)
+        public List<FoodDTO> GetAllFoodItemsByCategory(int foodCategory)
         {
             if (_PizzaContext.FoodItems != null)
             {
                 return _PizzaContext.FoodItems
                     .Include(fi => fi.FoodCategory)
                     .Include(fi => fi.FoodSize)
-                    .Where(x => x.FoodCategoryId == foodCategory)
-                    .ToList();
+                    .Where(fi => fi.FoodCategoryId == foodCategory)
+                    .Select(q => new FoodDTO()
+                    {
+                        Id = q.Id,
+                        Food = q.Name,
+                        IsGlutenFree = q.IsGlutenFree,
+                        Size = q.FoodSize.Size,
+                        Category = q.FoodCategory.CategoryName,
+                        Price = q.Price
+                    }).ToList();
             }
                 
-            return new List<FoodItems>();
+            return new List<FoodDTO>();
         }
 
-        public FoodItems? GetFoodItem(int id)
+        public FoodDTO? GetFoodItem(int id)
         {
             if (_PizzaContext.FoodItems != null)
-                return _PizzaContext.FoodItems.FirstOrDefault(x => x.Id == id);
+                return _PizzaContext.FoodItems.Select(q => new FoodDTO()
+                {
+                    Id = q.Id,
+                    Food = q.Name,
+                    IsGlutenFree = q.IsGlutenFree,
+                    Size = q.FoodSize.Size,
+                    Category = q.FoodCategory.CategoryName,
+                    Price = q.Price
+                }).SingleOrDefault(fi => fi.Id == id);
             return null;
         }
 
@@ -54,7 +83,7 @@ namespace RazorPizzeria.Services
         {
             if (_PizzaContext.FoodItems != null)
             {
-                FoodItems? food = this.GetFoodItem(id);
+                FoodItems? food = _PizzaContext.FoodItems.FirstOrDefault(f => f.Id == id);
                 if (food != null)
                     _PizzaContext.FoodItems.Remove(food);
             }
