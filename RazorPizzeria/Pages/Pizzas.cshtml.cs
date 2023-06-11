@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPizzeria.Data;
 using RazorPizzeria.DTOs;
+using RazorPizzeria.Models;
 using RazorPizzeria.Services;
 
 namespace RazorPizzeria.Pages
@@ -16,7 +17,7 @@ namespace RazorPizzeria.Pages
         }
         public void OnGet()
         {
-            Pizzas = _FoodItemsService.GetAllFoodItemsByCategory(1);
+            Pizzas = _FoodItemsService.GetAllFoodItemsByCategory(Convert.ToInt16(Categories.Pizzas));
         }
     }
 }

@@ -13,9 +13,9 @@ namespace RazorPizzeria.Data
                 var foodCategories = new FoodCategories[]
                 {
                     new FoodCategories{CategoryName="Pizzas"},
-                    new FoodCategories{CategoryName="Bebidas"},
-                    new FoodCategories{CategoryName="Entrantes"},
-                    new FoodCategories{CategoryName="Postres"}
+                    new FoodCategories{CategoryName="Drinks"},
+                    new FoodCategories{CategoryName="starters"},
+                    new FoodCategories{CategoryName="Desserts"}
                 };
 
                 foreach (FoodCategories item in foodCategories)
