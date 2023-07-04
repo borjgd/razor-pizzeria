@@ -1,0 +1,39 @@
+﻿.pizzas-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;  
+}
+
+.pizzas-container .card {
+    padding: 15px 10px;
+    margin: 10px;
+    width: 200px;
+    height: 300px;
+    
+}
+
+    .pizzas-container .card .card__image {
+        height: 80%;
+        border: solid 1px black;
+        background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .pizzas-container .card .card__food {
+        height: 10%;
+        font-weight: bolder;
+    }
+
+    .pizzas-container .card .card__button {
+        height: 10%;
+    }
+
+        .pizzas-container .card .card__button .card__button-styles {
+            width: 100%;
+            color: white;
+            font-weight: bolder;
+            border: solid 2px red;
+            background-color: red;
+            border-radius: 5px;
+        }
