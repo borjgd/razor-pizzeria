@@ -1,6 +1,6 @@
 ﻿.pizzas-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;  
 }
 
