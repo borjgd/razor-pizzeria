@@ -10,11 +10,11 @@
     @foreach(var pizza in Model.Pizzas)
     {
         <div class="card">
-            <div class="card__image"></div>
-            <div class="card__food">@pizza.Food</div>
-            <div class="card__button">
-                <button class="card__button-styles">Add</button>
+            <div class="card__food">@pizza.Food
+                <i class="fa-solid fa-circle-plus add-to-cart" title="Order"></i>
             </div>
+            <div class="card__image"></div>
+            <div class="card__details">@pizza.Description</div>
         </div>
     }
 </div>

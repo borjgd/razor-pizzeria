@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorPizzeria.Data;
 
@@ -10,9 +11,11 @@ using RazorPizzeria.Data;
 namespace RazorPizzeria.Migrations
 {
     [DbContext(typeof(PizzeriaContext))]
-    partial class PizzeriaContextModelSnapshot : ModelSnapshot
+    [Migration("20230815165837_add_description_to_fooditems")]
+    partial class add_description_to_fooditems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");

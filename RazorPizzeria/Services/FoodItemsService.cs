@@ -45,6 +45,7 @@ namespace RazorPizzeria.Services
                     {
                         Id = q.Id,
                         Food = q.Name,
+                        Description = q.Description,
                         IsGlutenFree = q.IsGlutenFree,
                         Size = q.FoodSize.Size,
                         Category = q.FoodCategory.CategoryName,

@@ -7,14 +7,14 @@
     <img src="https://plus.unsplash.com/premium_photo-1685317639083-ae6bc4bdf5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1800&q=80" alt="" />
 </div>
 <div class="starters item-container">
-    @foreach (var pizza in Model.Starters)
+    @foreach (var starter in Model.Starters)
     {
         <div class="card">
-            <div class="card__image"></div>
-            <div class="card__food">@pizza.Food</div>
-            <div class="card__button">
-                <button class="card__button-styles">Add</button>
+            <div class="card__food">@starter.Food
+                <i class="fa-solid fa-circle-plus add-to-cart" title="Order"></i>
             </div>
+            <div class="card__image"></div>
+            <div class="card__details">@starter.Description</div>
         </div>
     }
 </div>
