@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<FoodItemsService>();
+builder.Services.AddScoped<FoodCategoriesService>();
 builder.Services.AddDbContext<PizzeriaContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
