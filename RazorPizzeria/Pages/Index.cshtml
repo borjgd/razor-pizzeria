@@ -4,7 +4,76 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="welcome-banner">
+    <div class="container">
+        <div class="welcome-banner__content">
+            <h1 class="welcome-banner__title">Welcome to Razor Pizzeria</h1>
+            <a class="welcome-banner__btn btn btn-dark" href="#">Order now</a>
+        </div>
+    </div>
+</div>
+
+<div class="categories">
+    <div class="item-container">
+        <div class="card">
+            <a class="nav-link card_link text-dark" asp-area="" asp-page="/">
+                <img srcset="images/find_our_locals_extrasmall.jpg 480w, images/find_our_locals_small.jpg 576w, images/find_our_locals_medium.jpg 768w, images/find_our_locals_large.jpg 992w, images/find_our_locals_extralarge.jpg 1200w"
+                     sizes="(max-width: 480px) 480px,
+                       (max-width: 576px) 576px,
+                       (max-width: 768px) 578px,
+                       (max-width: 992px) 992px,
+                        1200px"
+                     src="images/find_our_locals_extralarge.jpg"
+                     alt="Pizzas" />
+                <div class="nav-link-text">
+                    <p>Find Our Locals</p>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a class="nav-link card_link text-dark" asp-area="" asp-page="/">
+                <img srcset="images/delivery_extrasmall.jpg 480w, images/delivery_small.jpg 576w, images/delivery_medium.jpg 768w, images/delivery_large.jpg 992w, images/delivery_extralarge.jpg 1200w"
+                     sizes="(max-width: 480px) 480px,
+                       (max-width: 576px) 576px,
+                       (max-width: 768px) 578px,
+                       (max-width: 992px) 992px,
+                        1200px"
+                     src="images/delivery_extralarge.jpg"
+                     alt="Pizzas" />
+                <div class="nav-link-text">
+                    <p>Delivery</p>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a class="nav-link card_link text-dark" asp-area="" asp-page="/">
+                <img srcset="images/menu_extrasmall.jpg 480w, images/menu_small.jpg 576w, images/menu_medium.jpg 768w, images/menu_large.jpg 992w, images/menu_extralarge.jpg 1200w"
+                     sizes="(max-width: 480px) 480px,
+                       (max-width: 576px) 576px,
+                       (max-width: 768px) 578px,
+                       (max-width: 992px) 992px,
+                        1200px"
+                     src="images/menu_extralarge.jpg"
+                     alt="Pizzas" />
+                <div class="nav-link-text">
+                    <p>Our Menu</p>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a class="nav-link card_link text-dark" asp-area="" asp-page="/">
+                <img srcset="images/work_with_us_extrasmall.jpg 480w, images/work_with_us_small.jpg 576w, images/work_with_us_medium.jpg 768w, images/work_with_us_large.jpg 992w, images/work_with_us_extralarge.jpg 1200w"
+                     sizes="(max-width: 480px) 480px,
+                       (max-width: 576px) 576px,
+                       (max-width: 768px) 578px,
+                       (max-width: 992px) 992px,
+                        1200px"
+                     src="images/work_with_us_extralarge.jpg"
+                     alt="Pizzas" />
+                <div class="nav-link-text">
+                    <p>Work With Us</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
